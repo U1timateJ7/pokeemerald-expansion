@@ -120,9 +120,7 @@ LilycoveCity_DepartmentStore_2F_Pokemart2:
 	.2byte ITEM_DECIDIUM_Z
 	.2byte ITEM_INCINIUM_Z
 	.2byte ITEM_PRIMARIUM_Z
-	.2byte ITEM_NONE
-	release
-	end
+	pokemartlistend
 
 LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly:
 	.string "Learn to use items properly.\n"

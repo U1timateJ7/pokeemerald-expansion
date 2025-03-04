@@ -1735,7 +1735,7 @@
 
 	@ Changes the Tera Type of the Pokemon in the specified slot of their party.
 	.macro setmonteratype type:req
-	callnative SetChosenMonTeraType
+	callnative SetChosenMonTeraType, requests_effects=1
 	.byte \type
 	.endm
 

@@ -42055,7 +42055,7 @@ F_TRAINER_FEMALE |
         },
     },
 #line 16829
-    [DIFFICULTY_NORMAL][TRAINER_RED] =
+    [DIFFICULTY_NORMAL][TRAINER_RED_TEST] =
     {
 #line 16830
         .trainerName = _("RED"),
@@ -42085,7 +42085,7 @@ F_TRAINER_FEMALE |
         },
     },
 #line 16841
-    [TRAINER_LEAF] =
+    [DIFFICULTY_NORMAL][TRAINER_LEAF_TEST] =
     {
 #line 16842
         .trainerName = _("LEAF"),
@@ -42179,7 +42179,7 @@ F_TRAINER_FEMALE |
         },
     },
 #line 16877
-    [TRAINER_RED] =
+    [DIFFICULTY_NORMAL][TRAINER_RED] =
     {
 #line 16878
         .trainerName = _("RED"),
@@ -42324,7 +42324,7 @@ F_TRAINER_FEMALE |
         },
     },
 #line 16936
-    [TRAINER_LEAF] =
+    [DIFFICULTY_NORMAL][TRAINER_LEAF] =
     {
 #line 16937
         .trainerName = _("LEAF"),

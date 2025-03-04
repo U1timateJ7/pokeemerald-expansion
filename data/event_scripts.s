@@ -583,6 +583,9 @@ gStdScripts_End::
 	.include "data/maps/MythRoom_Antimatter/scripts.inc"
 	.include "data/maps/StaticDen/scripts.inc"
 	.include "data/maps/DraconicHollow/scripts.inc"
+	.include "data/maps/AncientCave/scripts.inc"
+	.include "data/maps/Route100/scripts.inc"
+	.include "data/maps/GigaTemple/scripts.inc"
 
 	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"
@@ -1160,3 +1163,4 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/follower.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+	.include "data/text/dexnav.inc"

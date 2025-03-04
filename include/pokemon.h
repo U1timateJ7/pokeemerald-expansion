@@ -722,6 +722,7 @@ u8 *UseStatIncreaseItem(u16 itemId);
 u8 GetNature(struct Pokemon *mon);
 u8 GetNatureFromPersonality(u32 personality);
 u32 GetGMaxTargetSpecies(u32 species);
+u16 GetRandomSpecies();
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner);
 bool8 IsMonPastEvolutionLevel(struct Pokemon *mon);
 u16 NationalPokedexNumToSpecies(u16 nationalNum);
