@@ -574,6 +574,13 @@ gStdScripts_End::
 	.include "data/maps/Route119_WeatherInstitute_2F/scripts.inc"
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
+	.include "data/maps/RedRoom/scripts.inc"
+	.include "data/maps/MythRoom/scripts.inc"
+	.include "data/maps/MythRoom_Time/scripts.inc"
+	.include "data/maps/MythRoom_Space/scripts.inc"
+	.include "data/maps/MythRoom_Antimatter/scripts.inc"
+	.include "data/maps/StaticDen/scripts.inc"
+	.include "data/maps/DraconicHollow/scripts.inc"
 
 	.include "data/scripts/std_msgbox.inc"
 	.include "data/scripts/trainer_battle.inc"
@@ -1151,3 +1158,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/follower.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/AncientCave/scripts.inc"
+
+	.include "data/maps/Route100/scripts.inc"
+
+	.include "data/maps/GigaTemple/scripts.inc"

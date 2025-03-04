@@ -114,15 +114,15 @@ static const struct CombinedMove sCombinedMoves[2] =
 // Assigns all Hoenn Dex Indexes to a National Dex Index
 static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
 {
-    HOENN_TO_NATIONAL(TREECKO),
-    HOENN_TO_NATIONAL(GROVYLE),
-    HOENN_TO_NATIONAL(SCEPTILE),
-    HOENN_TO_NATIONAL(TORCHIC),
-    HOENN_TO_NATIONAL(COMBUSKEN),
-    HOENN_TO_NATIONAL(BLAZIKEN),
-    HOENN_TO_NATIONAL(MUDKIP),
-    HOENN_TO_NATIONAL(MARSHTOMP),
-    HOENN_TO_NATIONAL(SWAMPERT),
+    HOENN_TO_NATIONAL(SPRIGATITO),
+    HOENN_TO_NATIONAL(FLORAGATO),
+    HOENN_TO_NATIONAL(MEOWSCARADA),
+    HOENN_TO_NATIONAL(CYNDAQUIL),
+    HOENN_TO_NATIONAL(QUILAVA),
+    HOENN_TO_NATIONAL(TYPHLOSION),
+    HOENN_TO_NATIONAL(POPPLIO),
+    HOENN_TO_NATIONAL(BRIONNE),
+    HOENN_TO_NATIONAL(PRIMARINA),
     HOENN_TO_NATIONAL(POOCHYENA),
     HOENN_TO_NATIONAL(MIGHTYENA),
     HOENN_TO_NATIONAL(ZIGZAGOON),
@@ -336,15 +336,130 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(HORSEA),
     HOENN_TO_NATIONAL(SEADRA),
     HOENN_TO_NATIONAL(KINGDRA),
+    HOENN_TO_NATIONAL(BULBASAUR),
+    HOENN_TO_NATIONAL(IVYSAUR),
+    HOENN_TO_NATIONAL(VENUSAUR),
+    HOENN_TO_NATIONAL(CHARMANDER),
+    HOENN_TO_NATIONAL(CHARMELEON),
+    HOENN_TO_NATIONAL(CHARIZARD),
+    HOENN_TO_NATIONAL(SQUIRTLE),
+    HOENN_TO_NATIONAL(WARTORTLE),
+    HOENN_TO_NATIONAL(BLASTOISE),
+    HOENN_TO_NATIONAL(CHIKORITA),
+    HOENN_TO_NATIONAL(BAYLEEF),
+    HOENN_TO_NATIONAL(MEGANIUM),
+    HOENN_TO_NATIONAL(TOTODILE),
+    HOENN_TO_NATIONAL(CROCONAW),
+    HOENN_TO_NATIONAL(FERALIGATR),
+    HOENN_TO_NATIONAL(TREECKO),
+    HOENN_TO_NATIONAL(GROVYLE),
+    HOENN_TO_NATIONAL(SCEPTILE),
+    HOENN_TO_NATIONAL(TORCHIC),
+    HOENN_TO_NATIONAL(COMBUSKEN),
+    HOENN_TO_NATIONAL(BLAZIKEN),
+    HOENN_TO_NATIONAL(MUDKIP),
+    HOENN_TO_NATIONAL(MARSHTOMP),
+    HOENN_TO_NATIONAL(SWAMPERT),
+    HOENN_TO_NATIONAL(TURTWIG),
+    HOENN_TO_NATIONAL(GROTLE),
+    HOENN_TO_NATIONAL(TORTERRA),
+    HOENN_TO_NATIONAL(CHIMCHAR),
+    HOENN_TO_NATIONAL(MONFERNO),
+    HOENN_TO_NATIONAL(INFERNAPE),
+    HOENN_TO_NATIONAL(PIPLUP),
+    HOENN_TO_NATIONAL(PRINPLUP),
+    HOENN_TO_NATIONAL(EMPOLEON),
+    HOENN_TO_NATIONAL(SNIVY),
+    HOENN_TO_NATIONAL(SERVINE),
+    HOENN_TO_NATIONAL(SERPERIOR),
+    HOENN_TO_NATIONAL(TEPIG),
+    HOENN_TO_NATIONAL(PIGNITE),
+    HOENN_TO_NATIONAL(EMBOAR),
+    HOENN_TO_NATIONAL(OSHAWOTT),
+    HOENN_TO_NATIONAL(DEWOTT),
+    HOENN_TO_NATIONAL(SAMUROTT),
+    HOENN_TO_NATIONAL(CHESPIN),
+    HOENN_TO_NATIONAL(QUILLADIN),
+    HOENN_TO_NATIONAL(CHESNAUGHT),
+    HOENN_TO_NATIONAL(FENNEKIN),
+    HOENN_TO_NATIONAL(BRAIXEN),
+    HOENN_TO_NATIONAL(DELPHOX),
+    HOENN_TO_NATIONAL(FROAKIE),
+    HOENN_TO_NATIONAL(FROGADIER),
+    HOENN_TO_NATIONAL(GRENINJA),
+    HOENN_TO_NATIONAL(ROWLET),
+    HOENN_TO_NATIONAL(DARTRIX),
+    HOENN_TO_NATIONAL(DECIDUEYE),
+    HOENN_TO_NATIONAL(LITTEN),
+    HOENN_TO_NATIONAL(TORRACAT),
+    HOENN_TO_NATIONAL(INCINEROAR),
+    HOENN_TO_NATIONAL(GROOKEY),
+    HOENN_TO_NATIONAL(THWACKEY),
+    HOENN_TO_NATIONAL(RILLABOOM),
+    HOENN_TO_NATIONAL(SCORBUNNY),
+    HOENN_TO_NATIONAL(RABOOT),
+    HOENN_TO_NATIONAL(CINDERACE),
+    HOENN_TO_NATIONAL(SOBBLE),
+    HOENN_TO_NATIONAL(DRIZZILE),
+    HOENN_TO_NATIONAL(INTELEON),
+    HOENN_TO_NATIONAL(FUECOCO),
+    HOENN_TO_NATIONAL(CROCALOR),
+    HOENN_TO_NATIONAL(SKELEDIRGE),
+    HOENN_TO_NATIONAL(QUAXLY),
+    HOENN_TO_NATIONAL(QUAXWELL),
+    HOENN_TO_NATIONAL(QUAQUAVAL),
+    HOENN_TO_NATIONAL(EEVEE),
+    HOENN_TO_NATIONAL(VAPOREON),
+    HOENN_TO_NATIONAL(JOLTEON),
+    HOENN_TO_NATIONAL(FLAREON),
+    HOENN_TO_NATIONAL(ESPEON),
+    HOENN_TO_NATIONAL(UMBREON),
+    HOENN_TO_NATIONAL(LEAFEON),
+    HOENN_TO_NATIONAL(GLACEON),
+    HOENN_TO_NATIONAL(SYLVEON),
+    HOENN_TO_NATIONAL(PORYGON),
+    HOENN_TO_NATIONAL(PORYGON2),
+    HOENN_TO_NATIONAL(PORYGON_Z),
+    HOENN_TO_NATIONAL(SCYTHER),
+    HOENN_TO_NATIONAL(SCIZOR),
+    HOENN_TO_NATIONAL(KLEAVOR),
+    HOENN_TO_NATIONAL(ROTOM),
+    HOENN_TO_NATIONAL(DRATINI),
+    HOENN_TO_NATIONAL(DRAGONAIR),
+    HOENN_TO_NATIONAL(DRAGONITE),
+    HOENN_TO_NATIONAL(LARVITAR),
+    HOENN_TO_NATIONAL(PUPITAR),
+    HOENN_TO_NATIONAL(TYRANITAR),
     HOENN_TO_NATIONAL(BAGON),
     HOENN_TO_NATIONAL(SHELGON),
     HOENN_TO_NATIONAL(SALAMENCE),
     HOENN_TO_NATIONAL(BELDUM),
     HOENN_TO_NATIONAL(METANG),
     HOENN_TO_NATIONAL(METAGROSS),
+    HOENN_TO_NATIONAL(GIBLE),
+    HOENN_TO_NATIONAL(GABITE),
+    HOENN_TO_NATIONAL(GARCHOMP),
+    HOENN_TO_NATIONAL(DEINO),
+    HOENN_TO_NATIONAL(ZWEILOUS),
+    HOENN_TO_NATIONAL(HYDREIGON),
+    HOENN_TO_NATIONAL(GOOMY),
+    HOENN_TO_NATIONAL(SLIGGOO),
+    HOENN_TO_NATIONAL(GOODRA),
+    HOENN_TO_NATIONAL(JANGMO_O),
+    HOENN_TO_NATIONAL(HAKAMO_O),
+    HOENN_TO_NATIONAL(KOMMO_O),
+    HOENN_TO_NATIONAL(DREEPY),
+    HOENN_TO_NATIONAL(DRAKLOAK),
+    HOENN_TO_NATIONAL(DRAGAPULT),
+    HOENN_TO_NATIONAL(FRIGIBAX),
+    HOENN_TO_NATIONAL(ARCTIBAX),
+    HOENN_TO_NATIONAL(BAXCALIBUR),
     HOENN_TO_NATIONAL(REGIROCK),
     HOENN_TO_NATIONAL(REGICE),
     HOENN_TO_NATIONAL(REGISTEEL),
+    HOENN_TO_NATIONAL(REGIELEKI),
+    HOENN_TO_NATIONAL(REGIDRAGO),
+    HOENN_TO_NATIONAL(REGIGIGAS),
     HOENN_TO_NATIONAL(LATIAS),
     HOENN_TO_NATIONAL(LATIOS),
     HOENN_TO_NATIONAL(KYOGRE),
@@ -4419,6 +4534,26 @@ static u32 GetGMaxTargetSpecies(u32 species)
     return SPECIES_NONE;
 }
 
+size_t valueinarray(u16 val, const u16 *arr, size_t n)
+{
+    for (size_t i = 0; i < n; i++) {
+        if (arr[i] == val)
+            return i;
+    }
+    return -1;
+}
+
+u16 GetRandomSpecies()
+{
+    //u16 species = gBaseForms[Random() % 1025];
+    //size_t index = valueinarray(species, gSpeciesWithActualForms, sizeof(&gSpeciesWithActualForms));
+    //if (index >= 0) {
+    //    return gSpeciesInfo[index].formSpeciesIdTable[Random() % (sizeof(&gSpeciesInfo[index].formSpeciesIdTable) - 1)];
+    //}
+    //return species;
+    return (Random() % NUM_SPECIES - 1) + 1;
+}
+
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 evolutionItem, struct Pokemon *tradePartner)
 {
     int i, j;
@@ -4434,6 +4569,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
     bool32 consumeItem = FALSE;
     u16 evolutionTracker = GetMonData(mon, MON_DATA_EVOLUTION_TRACKER, 0);
     const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+
+    if (FlagGet(FLAG_RANDOM_EVOLUTIONS) && (mode == EVO_MODE_NORMAL || mode == EVO_MODE_CANT_STOP)) {
+        return GetRandomSpecies();
+    }
 
     if (evolutions == NULL)
         return SPECIES_NONE;
@@ -4720,6 +4859,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 break;
             case EVO_OVERWORLD_STEPS:
                 if (mon == GetFirstLiveMon() && gFollowerSteps >= evolutions[i].param)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_LEVEL_34_NOT_MAPSEC:
+                if (gMapHeader.regionMapSectionId != evolutions[i].param && 34 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_LEVEL_36_NOT_MAPSEC:
+                if (gMapHeader.regionMapSectionId != evolutions[i].param && 36 <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_LEVEL_36_MAPSEC:
+                if (gMapHeader.regionMapSectionId == evolutions[i].param && 36 <= level)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             }

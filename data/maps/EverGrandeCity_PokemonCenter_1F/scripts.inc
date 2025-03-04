@@ -25,7 +25,231 @@ EverGrandeCity_PokemonCenter_1F_EventScript_Nurse::
 	end
 
 EverGrandeCity_PokemonCenter_1F_EventScript_Woman::
-	msgbox EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad, MSGBOX_NPC
+	message EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad
+	waitmessage
+	goto EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu1
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu1::
+	multichoice 0, 0, MULTI_TERA1, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraNormal
+	case 1, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFighting
+	case 2, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFlying
+	case 3, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraPoison
+	case 4, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu2
+	case 5, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	case MULTI_B_PRESSED, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu2::
+	multichoice 0, 0, MULTI_TERA2, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGround
+	case 1, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraRock
+	case 2, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraBug
+	case 3, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGhost
+	case 4, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu3
+	case 5, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	case MULTI_B_PRESSED, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu3::
+	multichoice 0, 0, MULTI_TERA3, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraSteel
+	case 1, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFire
+	case 2, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraWater
+	case 3, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGrass
+	case 4, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu4
+	case 5, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	case MULTI_B_PRESSED, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu4::
+	multichoice 0, 0, MULTI_TERA4, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraElectric
+	case 1, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraPsychic
+	case 2, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraIce
+	case 3, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraDragon
+	case 4, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu5
+	case 5, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	case MULTI_B_PRESSED, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu5::
+	multichoice 0, 0, MULTI_TERA5, FALSE
+	switch VAR_RESULT
+	case 0, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraDark
+	case 1, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFairy
+	case 2, EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraStellar
+	case 3, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenu1
+	case 4, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	case MULTI_B_PRESSED, EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_TeraMenuExit::
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraNormal::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_NORMAL
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFighting::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_FIGHTING
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFlying::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_FLYING
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraPoison::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_POISON
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGround::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_GROUND
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraRock::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_ROCK
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraBug::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_BUG
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGhost::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_GHOST
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraSteel::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_STEEL
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFire::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_FIRE
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraWater::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_WATER
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraGrass::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_GRASS
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraElectric::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_ELECTRIC
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraPsychic::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_PSYCHIC
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraIce::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_ICE
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraDragon::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_DRAGON
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraDark::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_DARK
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraFairy::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_FAIRY
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_ChangeTeraStellar::
+	special ChoosePartyMon
+	waitstate
+	setmonteratype TYPE_STELLAR
+	msgbox EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay, MSGBOX_DEFAULT
+	release
 	end
 
 EverGrandeCity_PokemonCenter_1F_EventScript_ExpertM::
@@ -80,7 +304,12 @@ EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad:
 	.string "The POKéMON LEAGUE is only a short\n"
 	.string "distance after the VICTORY ROAD.\p"
 	.string "If you've come this far, what choice\n"
-	.string "do you have but to keep going?$"
+	.string "do you have but to keep going?\p"
+	.string "Do you want me to change one of your\n"
+	.string "POKéMONs Tera Type?$"
+
+EverGrandeCity_PokemonCenter_1F_Text_HaveANiceDay:
+	.string "Have a nice day!$"
 
 EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon:
 	.string "The long and harrowing VICTORY ROAD…\p"

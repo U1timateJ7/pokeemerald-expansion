@@ -7,7 +7,21 @@
 RusturfTunnel_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RusturfTunnel_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RusturfTunnel_OnFrame
+	map_script MAP_SCRIPT_ON_LOAD, RusturfTunnel_OnLoad
 	.byte 0
+
+RusturfTunnel_OnLoad:
+	goto_if_unset FLAG_IS_CHAMPION, RusturfTunnel_EventScript_ConcealAncientCave
+	end
+
+RusturfTunnel_EventScript_ConcealAncientCave::
+	setmetatile 16, 2, METATILE_RusturfTunnel_RockWall, TRUE
+	setmetatile 16, 3, METATILE_RusturfTunnel_RockWall, TRUE
+	setmetatile 17, 2, METATILE_RusturfTunnel_RockWall, TRUE
+	setmetatile 17, 3, METATILE_RusturfTunnel_RockWall, TRUE
+	setmetatile 18, 2, METATILE_RusturfTunnel_RockWall, TRUE
+	setmetatile 18, 3, METATILE_RusturfTunnel_RockWall, TRUE
+	end
 
 RusturfTunnel_OnFrame:
 	map_script_2 VAR_RUSTURF_TUNNEL_STATE, 4, RusturfTunnel_EventScript_ClearTunnelScene

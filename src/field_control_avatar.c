@@ -649,6 +649,11 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext_SetupScript(IslandCave_EventScript_OpenRegiEntrance);
             return TRUE;
         }
+        if (ShouldDoBrailleRegielekiPuzzle() == TRUE)
+        {
+            ScriptContext_SetupScript(StaticDen_EventScript_OpenRegiEntrance);
+            return TRUE;
+        }
         if (ShouldDoWallyCall() == TRUE)
         {
             ScriptContext_SetupScript(MauvilleCity_EventScript_RegisterWallyCall);

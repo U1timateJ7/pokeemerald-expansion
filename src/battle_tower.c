@@ -7,6 +7,7 @@
 #include "random.h"
 #include "text.h"
 #include "main.h"
+#include "pokemon.h"
 #include "international_string_util.h"
 #include "battle.h"
 #include "frontier_util.h"
@@ -1568,18 +1569,22 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
     u8 ball = (fmon->ball == 0xFF) ? Random() % POKEBALL_COUNT : fmon->ball;
     u16 move;
     u32 personality, ability, friendship, j;
+    u16 newSpecies = fmon->species;
+    if (FlagGet(FLAG_RANDOM_ENCOUNTERS)) {
+        newSpecies = GetRandomSpecies();
+    }
 
     if (fmon->gender == TRAINER_MON_MALE)
     {
-        personality = GeneratePersonalityForGender(MON_MALE, fmon->species);
+        personality = GeneratePersonalityForGender(MON_MALE, newSpecies);
     }
     else if (fmon->gender == TRAINER_MON_FEMALE)
     {
-        personality = GeneratePersonalityForGender(MON_FEMALE, fmon->species);
+        personality = GeneratePersonalityForGender(MON_FEMALE, newSpecies);
     }
 
     ModifyPersonalityForNature(&personality, fmon->nature);
-    CreateMon(dst, fmon->species, level, fixedIV, TRUE, personality, otID, OT_ID_PRESET);
+    CreateMon(dst, newSpecies, level, fixedIV, TRUE, personality, otID, OT_ID_PRESET);
 
     friendship = MAX_FRIENDSHIP;
     // Give the chosen Pokémon its specified moves.
@@ -1600,7 +1605,7 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
     // try to set ability. Otherwise, random of non-hidden as per vanilla
     if (fmon->ability != ABILITY_NONE)
     {
-        const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[fmon->species];
+        const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[newSpecies];
         u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
         for (ability = 0; ability < maxAbilities; ++ability)
         {

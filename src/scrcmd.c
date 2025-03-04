@@ -2549,3 +2549,12 @@ bool8 Scrcmd_getobjectfacingdirection(struct ScriptContext *ctx)
 
     return FALSE;
 }
+
+bool8 ScrCmd_setmonteratype(struct ScriptContext *ctx)
+{
+    u32 teraType = ScriptReadByte(ctx);
+
+    if (teraType < NUMBER_OF_MON_TYPES && gSpecialVar_0x8004 < PARTY_SIZE)
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_TERA_TYPE, &teraType);
+    return FALSE;
+}

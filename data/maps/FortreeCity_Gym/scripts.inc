@@ -22,6 +22,7 @@ FortreeCity_Gym_EventScript_Winona::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
 	goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
+	goto_if_unset FLAG_RECEIVED_Z_POWER_RING, FortreeCity_Gym_EventScript_GiveZPowerRing2
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -36,6 +37,7 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 	setvar VAR_0x8008, 6
 	call Common_EventScript_SetGymTrainers
 	call FortreeCity_Gym_EventScript_GiveAerialAce
+	call FortreeCity_Gym_EventScript_GiveZPowerRing
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -62,6 +64,21 @@ FortreeCity_Gym_EventScript_GiveAerialAce::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox FortreeCity_Gym_Text_ExplainAerialAce, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_AERIAL_ACE
+	return
+
+FortreeCity_Gym_EventScript_GiveZPowerRing2::
+	giveitem ITEM_Z_POWER_RING
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	msgbox FortreeCity_Gym_Text_ExplainZPowerRing, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_Z_POWER_RING
+	release
+	end
+
+FortreeCity_Gym_EventScript_GiveZPowerRing::
+	giveitem ITEM_Z_POWER_RING
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	msgbox FortreeCity_Gym_Text_ExplainZPowerRing, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_Z_POWER_RING
 	return
 
 FortreeCity_Gym_EventScript_WinonaRematch::
@@ -267,6 +284,13 @@ FortreeCity_Gym_Text_ExplainAerialAce:
 	.string "Its speed…\n"
 	.string "No POKéMON should be able to avoid it.\p"
 	.string "… … … … … …$"
+
+FortreeCity_Gym_Text_ExplainZPowerRing:
+	.string "This is a Z-Power Ring.\p"
+	.string "It allows the use of Z-Crystals to\n"
+	.string "turn regular moves into better\n"
+	.string "versions of them called Z-Moves.\p"
+	.string "Use it wisely…$"
 
 FortreeCity_Gym_Text_RegisteredWinona:
 	.string "Registered GYM LEADER WINONA\n"

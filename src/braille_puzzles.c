@@ -13,9 +13,49 @@
 #include "party_menu.h"
 #include "fldeff.h"
 
-EWRAM_DATA static bool8 sIsRegisteelPuzzle = 0;
+EWRAM_DATA static u8 sCurrentRegiPuzzle = 0;
 
 static const u8 sRegicePathCoords[][2] =
+{
+    {4,  21},
+    {5,  21},
+    {6,  21},
+    {7,  21},
+    {8,  21},
+    {9,  21},
+    {10, 21},
+    {11, 21},
+    {12, 21},
+    {12, 22},
+    {12, 23},
+    {13, 23},
+    {13, 24},
+    {13, 25},
+    {13, 26},
+    {13, 27},
+    {12, 27},
+    {12, 28},
+    {4,  29},
+    {5,  29},
+    {6,  29},
+    {7,  29},
+    {8,  29},
+    {9,  29},
+    {10, 29},
+    {11, 29},
+    {12, 29},
+    {4,  28},
+    {4,  27},
+    {3,  27},
+    {3,  26},
+    {3,  25},
+    {3,  24},
+    {3,  23},
+    {4,  23},
+    {4,  22},
+};
+
+static const u8 sRegielekiPathCoords[][2] =
 {
     {4,  21},
     {5,  21},
@@ -58,6 +98,7 @@ static const u8 sRegicePathCoords[][2] =
 static void Task_SealedChamberShakingEffect(u8);
 static void DoBrailleRegirockEffect(void);
 static void DoBrailleRegisteelEffect(void);
+static void DoBrailleRegidragoEffect(void);
 
 bool8 ShouldDoBrailleDigEffect(void)
 {
@@ -172,17 +213,17 @@ bool8 ShouldDoBrailleRegirockEffect(void)
     {
         if (gSaveBlock1Ptr->pos.x == 6 && gSaveBlock1Ptr->pos.y == 23)
         {
-            sIsRegisteelPuzzle = FALSE;
+            sCurrentRegiPuzzle = 1;
             return TRUE;
         }
         else if (gSaveBlock1Ptr->pos.x == 5 && gSaveBlock1Ptr->pos.y == 23)
         {
-            sIsRegisteelPuzzle = FALSE;
+            sCurrentRegiPuzzle = 1;
             return TRUE;
         }
         else if (gSaveBlock1Ptr->pos.x == 7 && gSaveBlock1Ptr->pos.y == 23)
         {
-            sIsRegisteelPuzzle = FALSE;
+            sCurrentRegiPuzzle = 1;
             return TRUE;
         }
     }
@@ -223,7 +264,7 @@ bool8 ShouldDoBrailleRegisteelEffect(void)
     {
         if (gSaveBlock1Ptr->pos.x == 8 && gSaveBlock1Ptr->pos.y == 25)
         {
-            sIsRegisteelPuzzle = TRUE;
+            sCurrentRegiPuzzle = 2;
             return TRUE;
         }
     }
@@ -255,29 +296,6 @@ static void DoBrailleRegisteelEffect(void)
     FlagSet(FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED);
     UnlockPlayerFieldControls();
     UnfreezeObjectEvents();
-}
-
-// theory: another commented out DoBrailleWait and Task_BrailleWait.
-static void UNUSED DoBrailleWait(void)
-{
-}
-
-// this used to be FldEff_UseFlyAncientTomb . why did GF merge the 2 functions?
-bool8 FldEff_UsePuzzleEffect(void)
-{
-    u8 taskId = CreateFieldMoveTask();
-
-    if (sIsRegisteelPuzzle == TRUE)
-    {
-        gTasks[taskId].data[8] = (u32)UseRegisteelHm_Callback >> 16;
-        gTasks[taskId].data[9] = (u32)UseRegisteelHm_Callback;
-    }
-    else
-    {
-        gTasks[taskId].data[8] = (u32)UseRegirockHm_Callback >> 16;
-        gTasks[taskId].data[9] = (u32)UseRegirockHm_Callback;
-    }
-    return FALSE;
 }
 
 // The puzzle to unlock Regice's cave requires the player to interact with the braille message on the back wall,
@@ -341,5 +359,171 @@ bool8 ShouldDoBrailleRegicePuzzle(void)
         FlagClear(FLAG_TEMP_REGICE_PUZZLE_STARTED);
     }
 
+    return FALSE;
+}
+
+// The puzzle to unlock Regieleki's cave requires the player to interact with the braille message on the back wall,
+// step on every space on the perimeter of the cave (and only those spaces) then return to the back wall.
+bool8 ShouldDoBrailleRegielekiPuzzle(void)
+{
+    u8 i;
+
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(STATIC_DEN)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(STATIC_DEN))
+    {
+        if (FlagGet(FLAG_SYS_BRAILLE_REGIELEKI_COMPLETED))
+            return FALSE;
+        // Set when the player interacts with the braille message
+        if (FlagGet(FLAG_TEMP_REGIELEKI_PUZZLE_STARTED) == FALSE)
+            return FALSE;
+        // Cleared when the player interacts with the braille message
+        if (FlagGet(FLAG_TEMP_REGIELEKI_PUZZLE_FAILED) == TRUE)
+            return FALSE;
+
+        for (i = 0; i < ARRAY_COUNT(sRegielekiPathCoords); i++)
+        {
+            u8 xPos = sRegielekiPathCoords[i][0];
+            u8 yPos = sRegielekiPathCoords[i][1];
+            if (gSaveBlock1Ptr->pos.x == xPos && gSaveBlock1Ptr->pos.y == yPos)
+            {
+                // Player is standing on a correct space, set the corresponding bit
+                if (i < 16)
+                {
+                    u16 val = VarGet(VAR_REGIELEKI_STEPS_1);
+                    val |= 1 << i;
+                    VarSet(VAR_REGIELEKI_STEPS_1, val);
+                }
+                else if (i < 32)
+                {
+                    u16 val = VarGet(VAR_REGIELEKI_STEPS_2);
+                    val |= 1 << (i - 16);
+                    VarSet(VAR_REGIELEKI_STEPS_2, val);
+                }
+                else
+                {
+                    u16 val = VarGet(VAR_REGIELEKI_STEPS_3);
+                    val |= 1 << (i - 32);
+                    VarSet(VAR_REGIELEKI_STEPS_3, val);
+                }
+
+                // Make sure a full lap has been completed. There are 36 steps in a lap, so 16+16+4 bits to check across the 3 vars.
+                if (VarGet(VAR_REGIELEKI_STEPS_1) != 0xFFFF || VarGet(VAR_REGIELEKI_STEPS_2) != 0xFFFF || VarGet(VAR_REGIELEKI_STEPS_3) != 0xF)
+                    return FALSE;
+
+                // A lap has been completed, the puzzle is complete when the player returns to the braille message.
+                if (gSaveBlock1Ptr->pos.x == 8 && gSaveBlock1Ptr->pos.y == 21)
+                    return TRUE;
+                else
+                    return FALSE;
+            }
+        }
+
+        // Player stepped on an incorrect space, puzzle failed.
+        FlagSet(FLAG_TEMP_REGIELEKI_PUZZLE_FAILED);
+        FlagClear(FLAG_TEMP_REGIELEKI_PUZZLE_STARTED);
+    }
+
+    return FALSE;
+}
+
+bool8 CheckHasAllRegis(void)
+{
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_REGIROCK)
+    {
+        if (GetMonData(&gPlayerParty[1], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_REGICE)
+        {
+            if (GetMonData(&gPlayerParty[2], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_REGISTEEL)
+            {
+                if (GetMonData(&gPlayerParty[3], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_REGIELEKI)
+                {
+                    if (GetMonData(&gPlayerParty[4], MON_DATA_SPECIES_OR_EGG, 0) == SPECIES_REGIDRAGO)
+                        FlagSet(FLAG_HAS_ALL_REGIS);
+                        return TRUE;
+                }
+            }
+        }
+    }
+    FlagClear(FLAG_HAS_ALL_REGIS);
+    return FALSE;
+}
+
+bool8 ShouldDoBrailleRegidragoEffect(void)
+{
+    if (!FlagGet(FLAG_SYS_REGIDRAGO_PUZZLE_COMPLETED)
+        && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(DRACONIC_HOLLOW)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(DRACONIC_HOLLOW))
+    {
+        if (gSaveBlock1Ptr->pos.x == 6 && gSaveBlock1Ptr->pos.y == 23)
+        {
+            sCurrentRegiPuzzle = 3;
+            return TRUE;
+        }
+        else if (gSaveBlock1Ptr->pos.x == 5 && gSaveBlock1Ptr->pos.y == 23)
+        {
+            sCurrentRegiPuzzle = 3;
+            return TRUE;
+        }
+        else if (gSaveBlock1Ptr->pos.x == 7 && gSaveBlock1Ptr->pos.y == 23)
+        {
+            sCurrentRegiPuzzle = 3;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+void SetUpPuzzleEffectRegidrago(void)
+{
+    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    FieldEffectStart(FLDEFF_USE_TOMB_PUZZLE_EFFECT);
+}
+
+void UseRegidragoHm_Callback(void)
+{
+    FieldEffectActiveListRemove(FLDEFF_USE_TOMB_PUZZLE_EFFECT);
+    DoBrailleRegidragoEffect();
+}
+
+static void DoBrailleRegidragoEffect(void)
+{
+    MapGridSetMetatileIdAt(7 + MAP_OFFSET, 19 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_TopLeft);
+    MapGridSetMetatileIdAt(8 + MAP_OFFSET, 19 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_TopMid);
+    MapGridSetMetatileIdAt(9 + MAP_OFFSET, 19 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_TopRight);
+    MapGridSetMetatileIdAt(7 + MAP_OFFSET, 20 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_BottomLeft | MAPGRID_COLLISION_MASK);
+    MapGridSetMetatileIdAt(8 + MAP_OFFSET, 20 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_BottomMid);
+    MapGridSetMetatileIdAt(9 + MAP_OFFSET, 20 + MAP_OFFSET, METATILE_Cave_SealedChamberEntrance_BottomRight | MAPGRID_COLLISION_MASK);
+    DrawWholeMapView();
+    PlaySE(SE_BANG);
+    FlagSet(FLAG_SYS_REGIDRAGO_PUZZLE_COMPLETED);
+    UnlockPlayerFieldControls();
+    UnfreezeObjectEvents();
+}
+
+// theory: another commented out DoBrailleWait and Task_BrailleWait.
+static void UNUSED DoBrailleWait(void)
+{
+}
+
+// this used to be FldEff_UseFlyAncientTomb . why did GF merge the 2 functions?
+bool8 FldEff_UsePuzzleEffect(void)
+{
+    u8 taskId = CreateFieldMoveTask();
+
+    if (sCurrentRegiPuzzle == 2)
+    {
+        gTasks[taskId].data[8] = (u32)UseRegisteelHm_Callback >> 16;
+        gTasks[taskId].data[9] = (u32)UseRegisteelHm_Callback;
+    }
+    else if (sCurrentRegiPuzzle == 1)
+    {
+        gTasks[taskId].data[8] = (u32)UseRegirockHm_Callback >> 16;
+        gTasks[taskId].data[9] = (u32)UseRegirockHm_Callback;
+    }
+    else if (sCurrentRegiPuzzle == 3)
+    {
+        gTasks[taskId].data[8] = (u32)UseRegidragoHm_Callback >> 16;
+        gTasks[taskId].data[9] = (u32)UseRegidragoHm_Callback;
+    }
     return FALSE;
 }

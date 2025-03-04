@@ -778,6 +778,55 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_Tera1[] =
+{
+    {COMPOUND_STRING("Normal")},
+    {COMPOUND_STRING("Fighting")},
+    {COMPOUND_STRING("Flying")},
+    {COMPOUND_STRING("Poison")},
+    {COMPOUND_STRING("MORE...")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Tera2[] =
+{
+    {COMPOUND_STRING("Ground")},
+    {COMPOUND_STRING("Rock")},
+    {COMPOUND_STRING("Bug")},
+    {COMPOUND_STRING("Ghost")},
+    {COMPOUND_STRING("MORE...")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Tera3[] =
+{
+    {COMPOUND_STRING("Steel")},
+    {COMPOUND_STRING("Fire")},
+    {COMPOUND_STRING("Water")},
+    {COMPOUND_STRING("Grass")},
+    {COMPOUND_STRING("MORE...")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Tera4[] =
+{
+    {COMPOUND_STRING("Electric")},
+    {COMPOUND_STRING("Psychic")},
+    {COMPOUND_STRING("Ice")},
+    {COMPOUND_STRING("Dragon")},
+    {COMPOUND_STRING("MORE...")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_Tera5[] =
+{
+    {COMPOUND_STRING("Dark")},
+    {COMPOUND_STRING("Fairy")},
+    {COMPOUND_STRING("Stellar")},
+    {COMPOUND_STRING("MORE...")},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -906,6 +955,11 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+    [MULTI_TERA1]                      = MULTICHOICE(MultichoiceList_Tera1),
+    [MULTI_TERA2]                      = MULTICHOICE(MultichoiceList_Tera2),
+    [MULTI_TERA3]                      = MULTICHOICE(MultichoiceList_Tera3),
+    [MULTI_TERA4]                      = MULTICHOICE(MultichoiceList_Tera4),
+    [MULTI_TERA5]                      = MULTICHOICE(MultichoiceList_Tera5),
 };
 
 const u8 *const gStdStrings[] =

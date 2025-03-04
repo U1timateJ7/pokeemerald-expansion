@@ -123,6 +123,11 @@
 #define MULTI_FALLARBOR_TENT_RULES         112
 #define MULTI_TAG_MATCH_TYPE               113
 #define MULTI_BERRY_PLOT                   114
+#define MULTI_TERA1                        115
+#define MULTI_TERA2                        116
+#define MULTI_TERA3                        117
+#define MULTI_TERA4                        118
+#define MULTI_TERA5                        119
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0

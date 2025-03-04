@@ -53,6 +53,7 @@ LavaridgeTown_Gym_1F_EventScript_Flannery::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
 	goto_if_unset FLAG_RECEIVED_TM_OVERHEAT, LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+	goto_if_unset FLAG_RECEIVED_TERA_ORB, LavaridgeTown_Gym_1F_EventScript_GiveTeraOrb2
 	msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -72,6 +73,7 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	setvar VAR_LAVARIDGE_TOWN_STATE, 1
 	call LavaridgeTown_Gym_1F_EventScript_GiveOverheat
+	call LavaridgeTown_Gym_1F_EventScript_GiveTeraOrb
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -96,6 +98,21 @@ LavaridgeTown_Gym_1F_EventScript_GiveOverheat::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
 	msgbox LavaridgeTown_Gym_1F_Text_ExplainOverheat, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_OVERHEAT
+	return
+
+LavaridgeTown_Gym_1F_EventScript_GiveTeraOrb2::
+	giveitem ITEM_TERA_ORB
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	msgbox LavaridgeTown_Gym_1F_Text_ExplainTeraOrb, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_TERA_ORB
+	release
+	end
+
+LavaridgeTown_Gym_1F_EventScript_GiveTeraOrb::
+	giveitem ITEM_TERA_ORB
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	msgbox LavaridgeTown_Gym_1F_Text_ExplainTeraOrb, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_TERA_ORB
 	return
 
 LavaridgeTown_Gym_1F_EventScript_FlanneryRematch::
@@ -351,6 +368,14 @@ LavaridgeTown_Gym_1F_Text_ExplainOverheat:
 	.string "But it also sharply cuts the SP. ATK\n"
 	.string "of the POKéMON using it. It might not\l"
 	.string "be suitable for longer battles.$"
+
+LavaridgeTown_Gym_1F_Text_ExplainTeraOrb:
+	.string "This is a Tera Orb.\p"
+	.string "It allows you to Terastallize your\n"
+	.string "POKéMON.\p"
+	.string "Terastallized POKéMON deal extra\n"
+	.string "damage using moves of its Tera Type.\l"
+	.string "Make good use of it.$"
 
 LavaridgeTown_Gym_1F_Text_RegisteredFlannery:
 	.string "Registered GYM LEADER FLANNERY\n"

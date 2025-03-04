@@ -4410,6 +4410,106 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_RED_ROOM",
+      "name": "RedRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/RedRoom/border.bin",
+      "blockdata_filepath": "data/layouts/RedRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYTH_ROOM",
+      "name": "MythRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MythRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MythRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYTH_ROOM_TIME",
+      "name": "MythRoom_Time_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MythRoom_Time/border.bin",
+      "blockdata_filepath": "data/layouts/MythRoom_Time/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYTH_ROOM_SPACE",
+      "name": "MythRoom_Space_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MythRoom_Space/border.bin",
+      "blockdata_filepath": "data/layouts/MythRoom_Space/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYTH_ROOM_ANTIMATTER",
+      "name": "MythRoom_Antimatter_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MythRoom_Antimatter/border.bin",
+      "blockdata_filepath": "data/layouts/MythRoom_Antimatter/map.bin"
+    },
+    {
+      "id": "LAYOUT_STATIC_DEN",
+      "name": "StaticDen_Layout",
+      "width": 17,
+      "height": 33,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/StaticDen/border.bin",
+      "blockdata_filepath": "data/layouts/StaticDen/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRACONIC_HOLLOW",
+      "name": "DraconicHollow_Layout",
+      "width": 17,
+      "height": 33,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/DraconicHollow/border.bin",
+      "blockdata_filepath": "data/layouts/DraconicHollow/map.bin"
+    },
+    {
+      "id": "LAYOUT_ANCIENT_CAVE",
+      "name": "AncientCave_Layout",
+      "width": 31,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/AncientCave/border.bin",
+      "blockdata_filepath": "data/layouts/AncientCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE100",
+      "name": "Route100_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route100/border.bin",
+      "blockdata_filepath": "data/layouts/Route100/map.bin"
+    },
+    {
+      "id": "LAYOUT_GIGA_TEMPLE",
+      "name": "GigaTemple_Layout",
+      "width": 17,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/GigaTemple/border.bin",
+      "blockdata_filepath": "data/layouts/GigaTemple/map.bin"
     }
   ]
 }

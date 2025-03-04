@@ -1,5 +1,15 @@
 VictoryRoad_B2F_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, VictoryRoad_B2F_OnLoad
 	.byte 0
+
+VictoryRoad_B2F_OnLoad:
+	goto_if_unset FLAG_IS_CHAMPION, VictoryRoad_B2F_EventScript_ConcealRedRoom
+	end
+
+VictoryRoad_B2F_EventScript_ConcealRedRoom::
+	setmetatile 1, 0, METATILE_Cave_RockWall, TRUE
+	setmetatile 1, 1, METATILE_Cave_RockWall, TRUE
+	end
 
 VictoryRoad_B2F_EventScript_Vito::
 	trainerbattle_single TRAINER_VITO, VictoryRoad_B2F_Text_VitoIntro, VictoryRoad_B2F_Text_VitoDefeat

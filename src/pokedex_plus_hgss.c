@@ -251,6 +251,9 @@ static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_V
 static const u8 sText_EVO_ITEM_COUNT_999[] = _("{LV}{UP_ARROW} with 999 {STR_VAR_2} in bag");
 static const u8 sText_EVO_DEFEAT_THREE_WITH_ITEM[] = _("{LV}{UP_ARROW} defeating 3 {STR_VAR_3} holding {STR_VAR_2}");
 static const u8 sText_EVO_OVERWORLD_STEPS[] = _("{LV}{UP_ARROW} after {STR_VAR_2} steps");
+static const u8 sText_EVO_LEVEL_34_NOT_MAPSEC[] = _("{LV}{UP_ARROW} to 34");
+static const u8 sText_EVO_LEVEL_36_NOT_MAPSEC[] = _("{LV}{UP_ARROW} to 36");
+static const u8 sText_EVO_LEVEL_36_MAPSEC[] = _("{LV}{UP_ARROW} to 36 on {STR_VAR_2}");
 static const u8 sText_EVO_UNKNOWN[] = _("Method unknown");
 static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} has no evolution.");
 
@@ -6650,6 +6653,16 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
         case EVO_OVERWORLD_STEPS:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 4);
             StringExpandPlaceholders(gStringVar4, sText_EVO_OVERWORLD_STEPS);
+            break;
+        case EVO_LEVEL_34_NOT_MAPSEC:
+            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_34_NOT_MAPSEC );
+            break;
+        case EVO_LEVEL_36_NOT_MAPSEC:
+            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_36_NOT_MAPSEC );
+            break;
+        case EVO_LEVEL_36_MAPSEC:
+            StringCopy(gStringVar2, gRegionMapEntries[evolutions[i].param].name);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_36_MAPSEC );
             break;
         default:
             StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);

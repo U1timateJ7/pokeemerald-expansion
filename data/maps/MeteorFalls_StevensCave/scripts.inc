@@ -1,6 +1,8 @@
 .set LOCALID_STEVEN, 1
 
 MeteorFalls_StevensCave_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, MeteorFalls_StevensCave_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, MeteorFalls_StevensCave_OnTransition
 	.byte 0
 
 MeteorFalls_StevensCave_EventScript_Steven::
@@ -26,6 +28,54 @@ MeteorFalls_StevensCave_EventScript_Defeated::
 	waitmovement 0
 	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
 	release
+	end
+
+MeteorFalls_StevensCave_OnResume::
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, MeteorFalls_StevensCave_EventScript_TryRemoveTerapagos
+	end
+
+MeteorFalls_StevensCave_EventScript_TryRemoveTerapagos::
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+	removeobject VAR_LAST_TALKED
+	return
+
+MeteorFalls_StevensCave_OnTransition::
+	call_if_unset FLAG_DEFEATED_TERAPAGOS, MeteorFalls_StevensCave_EventScript_ShowTerapagos
+	end
+
+MeteorFalls_StevensCave_EventScript_ShowTerapagos::
+	clearflag FLAG_HIDE_TERAPAGOS
+	return
+
+MeteorFalls_StevensCave_EventScript_Terapagos::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_TERAPAGOS, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setwildbattle SPECIES_TERAPAGOS, 85
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	special BattleSetup_StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MeteorFalls_StevensCave_EventScript_DefeatedTerapagos
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MeteorFalls_StevensCave_EventScript_RanFromTerapagos
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MeteorFalls_StevensCave_EventScript_RanFromTerapagos
+	setflag FLAG_DEFEATED_TERAPAGOS
+	release
+	end
+
+MeteorFalls_StevensCave_EventScript_DefeatedTerapagos::
+	setflag FLAG_DEFEATED_TERAPAGOS
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
+MeteorFalls_StevensCave_EventScript_RanFromTerapagos::
+	setvar VAR_0x8004, SPECIES_TERAPAGOS
+	goto Common_EventScript_LegendaryFlewAway
 	end
 
 MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst:

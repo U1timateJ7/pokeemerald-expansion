@@ -113,13 +113,17 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 
 void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
+    u16 newSpecies = species;
+    if (FlagGet(FLAG_RANDOM_ENCOUNTERS)) {
+        newSpecies = GetRandomSpecies();
+    }
     u8 heldItem[2];
 
     ZeroEnemyPartyMons();
     if (OW_SYNCHRONIZE_NATURE > GEN_3)
-        CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, PickWildMonNature());
+        CreateMonWithNature(&gEnemyParty[0], newSpecies, level, USE_RANDOM_IVS, PickWildMonNature());
     else
-        CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
+        CreateMon(&gEnemyParty[0], newSpecies, level, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item)
     {
         heldItem[0] = item;
@@ -129,15 +133,23 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 }
 void CreateScriptedDoubleWildMon(u16 species1, u8 level1, u16 item1, u16 species2, u8 level2, u16 item2)
 {
+    u16 newSpecies1 = species1;
+    if (FlagGet(FLAG_RANDOM_ENCOUNTERS)) {
+        newSpecies1 = GetRandomSpecies();
+    }
+    u16 newSpecies2 = species2;
+    if (FlagGet(FLAG_RANDOM_ENCOUNTERS)) {
+        newSpecies2 = GetRandomSpecies();
+    }
     u8 heldItem1[2];
     u8 heldItem2[2];
 
     ZeroEnemyPartyMons();
 
     if (OW_SYNCHRONIZE_NATURE > GEN_3)
-        CreateMonWithNature(&gEnemyParty[0], species1, level1, 32, PickWildMonNature());
+        CreateMonWithNature(&gEnemyParty[0], newSpecies1, level1, 32, PickWildMonNature());
     else
-        CreateMon(&gEnemyParty[0], species1, level1, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+        CreateMon(&gEnemyParty[0], newSpecies1, level1, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item1)
     {
         heldItem1[0] = item1;
@@ -146,9 +158,9 @@ void CreateScriptedDoubleWildMon(u16 species1, u8 level1, u16 item1, u16 species
     }
 
     if (OW_SYNCHRONIZE_NATURE > GEN_3)
-        CreateMonWithNature(&gEnemyParty[1], species2, level2, 32, PickWildMonNature());
+        CreateMonWithNature(&gEnemyParty[1], newSpecies2, level2, 32, PickWildMonNature());
     else
-        CreateMon(&gEnemyParty[1], species2, level2, 32, 0, 0, OT_ID_PLAYER_ID, 0);
+        CreateMon(&gEnemyParty[1], newSpecies2, level2, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item2)
     {
         heldItem2[0] = item2;
@@ -311,6 +323,14 @@ void SetTeraType(struct ScriptContext *ctx)
 
     if (type < NUMBER_OF_MON_TYPES && partyIndex < PARTY_SIZE)
         SetMonData(&gPlayerParty[partyIndex], MON_DATA_TERA_TYPE, &type);
+}
+
+void SetChosenMonTeraType(struct ScriptContext *ctx)
+{
+    u32 type = ScriptReadByte(ctx);
+
+    if (type < NUMBER_OF_MON_TYPES && gSpecialVar_0x8004 < PARTY_SIZE)
+        SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_TERA_TYPE, &type);
 }
 
 /* Creates a Pokemon via script
@@ -536,6 +556,12 @@ void Script_GetChosenMonDefensiveIVs(void)
     ConvertIntToDecimalStringN(gStringVar1, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HP_IV), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_DEF_IV), STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar3, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPDEF_IV), STR_CONV_MODE_LEFT_ALIGN, 3);
+}
+
+void Script_SetChosenMonMaxFriendship(void)
+{
+    u8 maxFriendship = MAX_FRIENDSHIP;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_FRIENDSHIP, &maxFriendship);
 }
 
 void Script_SetStatus1(struct ScriptContext *ctx)

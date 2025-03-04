@@ -17,9 +17,9 @@ Debug_CheatStart::
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG
 	setvar VAR_BIRCH_LAB_STATE, 2
 	setvar VAR_ROUTE101_STATE, 3
-	givemon SPECIES_TREECKO, 20, ITEM_NONE
-	givemon SPECIES_TORCHIC, 20, ITEM_NONE
-	givemon SPECIES_MUDKIP, 20, ITEM_NONE
+	givemon SPECIES_SPRIGATITO, 20, ITEM_NONE
+	givemon SPECIES_CYNDAQUIL, 20, ITEM_NONE
+	givemon SPECIES_POPPLIO, 20, ITEM_NONE
 	setflag FLAG_SYS_POKEDEX_GET
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
@@ -135,6 +135,22 @@ Debug_EventScript_Text_OffensiveIVs:
 
 Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
+
+Debug_EventScript_MaxFriendship::
+	lockall
+	getpartysize
+	goto_if_eq VAR_RESULT, 0, Debug_NoPokemon
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_EventScript_MaxFriendship_End
+	callnative Script_SetChosenMonMaxFriendship
+	msgbox Debug_EventScript_Text_MaxFriendship, MSGBOX_DEFAULT
+Debug_EventScript_MaxFriendship_End::
+	releaseall
+	end
+
+Debug_EventScript_Text_MaxFriendship:
+	.string "Set FRIENDSHIP to maximum value$"
 
 Debug_EventScript_Script_1::
 	release

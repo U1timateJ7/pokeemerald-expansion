@@ -130,6 +130,7 @@ enum PartyDebugMenu
     DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1,
     DEBUG_PARTY_MENU_ITEM_CHECK_EVS,
     DEBUG_PARTY_MENU_ITEM_CHECK_IVS,
+    DEBUG_PARTY_MENU_ITEM_MAX_FRIENDSHIP,
     DEBUG_PARTY_MENU_ITEM_CLEAR_PARTY,
 };
 
@@ -164,6 +165,8 @@ enum FlagsVarsDebugMenu
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_ENCOUNTERS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_EVOLUTIONS,
 };
 
 enum BattleType
@@ -397,6 +400,7 @@ static void DebugAction_Party_HealParty(u8 taskId);
 static void DebugAction_Party_InflictStatus1(u8 taskId);
 static void DebugAction_Party_CheckEVs(u8 taskId);
 static void DebugAction_Party_CheckIVs(u8 taskId);
+static void DebugAction_Party_MaxFriendship(u8 taskId);
 static void DebugAction_Party_ClearParty(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
@@ -419,6 +423,8 @@ static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
 static void DebugAction_FlagsVars_RunningShoes(u8 taskId);
+static void DebugAction_FlagsVars_ToggleRandomEncounters(u8 taskId);
+static void DebugAction_FlagsVars_ToggleRandomEvolutions(u8 taskId);
 
 static void Debug_InitializeBattle(u8 taskId);
 
@@ -458,6 +464,7 @@ extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern const u8 Debug_EventScript_FontTest[];
 extern const u8 Debug_EventScript_CheckEVs[];
 extern const u8 Debug_EventScript_CheckIVs[];
+extern const u8 Debug_EventScript_MaxFriendship[];
 extern const u8 Debug_EventScript_InflictStatus1[];
 extern const u8 Debug_EventScript_Script_1[];
 extern const u8 Debug_EventScript_Script_2[];
@@ -559,6 +566,7 @@ static const u8 sDebugText_Party_HealParty[] =               _("Heal party");
 static const u8 sDebugText_Party_InflictStatus1[] =          _("Inflict Status1");
 static const u8 sDebugText_Party_CheckEVs[] =                _("Check EVs");
 static const u8 sDebugText_Party_CheckIVs[] =                _("Check IVs");
+static const u8 sDebugText_Party_MaxFriendship[] =           _("Max Friendship");
 static const u8 sDebugText_Party_ClearParty[] =              _("Clear Party");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flags[] =               _("Set Flag XYZ…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -583,6 +591,8 @@ static const u8 sDebugText_FlagsVars_SwitchEncounter[] =     _("Toggle {STR_VAR_
 static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =    _("Toggle {STR_VAR_1}Trainer See OFF");
 static const u8 sDebugText_FlagsVars_SwitchBagUse[] =        _("Toggle {STR_VAR_1}Bag Use OFF");
 static const u8 sDebugText_FlagsVars_SwitchCatching[] =      _("Toggle {STR_VAR_1}Catching OFF");
+static const u8 sDebugText_FlagsVars_ToggleRandomEncounters[] =  _("Toggle {STR_VAR_1}Random Encounters");
+static const u8 sDebugText_FlagsVars_ToggleRandomEvolutions[] =  _("Toggle {STR_VAR_1}Random Evolutions");
 // Battle
 static const u8 sDebugText_Battle_0_Wild[] =        _("Wild…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_WildDouble[] =  _("Wild Double…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -759,6 +769,7 @@ static const struct ListMenuItem sDebugMenu_Items_Party[] =
     [DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1] = {sDebugText_Party_InflictStatus1, DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1},
     [DEBUG_PARTY_MENU_ITEM_CHECK_EVS]       = {sDebugText_Party_CheckEVs,       DEBUG_PARTY_MENU_ITEM_CHECK_EVS},
     [DEBUG_PARTY_MENU_ITEM_CHECK_IVS]       = {sDebugText_Party_CheckIVs,       DEBUG_PARTY_MENU_ITEM_CHECK_IVS},
+    [DEBUG_PARTY_MENU_ITEM_MAX_FRIENDSHIP]  = {sDebugText_Party_MaxFriendship,  DEBUG_PARTY_MENU_ITEM_MAX_FRIENDSHIP},
     [DEBUG_PARTY_MENU_ITEM_CLEAR_PARTY]     = {sDebugText_Party_ClearParty,     DEBUG_PARTY_MENU_ITEM_CLEAR_PARTY},
 };
 
@@ -793,6 +804,8 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_ENCOUNTERS] = {sDebugText_FlagsVars_ToggleRandomEncounters, DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_ENCOUNTERS},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_EVOLUTIONS] = {sDebugText_FlagsVars_ToggleRandomEvolutions, DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_EVOLUTIONS},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Battle_0[] =
@@ -930,6 +943,7 @@ static void (*const sDebugMenu_Actions_Party[])(u8) =
     [DEBUG_PARTY_MENU_ITEM_INFLICT_STATUS1] = DebugAction_Party_InflictStatus1,
     [DEBUG_PARTY_MENU_ITEM_CHECK_EVS]       = DebugAction_Party_CheckEVs,
     [DEBUG_PARTY_MENU_ITEM_CHECK_IVS]       = DebugAction_Party_CheckIVs,
+    [DEBUG_PARTY_MENU_ITEM_MAX_FRIENDSHIP]  = DebugAction_Party_MaxFriendship,
     [DEBUG_PARTY_MENU_ITEM_CLEAR_PARTY]     = DebugAction_Party_ClearParty,
 };
 
@@ -964,6 +978,8 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = DebugAction_FlagsVars_TrainerSeeOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = DebugAction_FlagsVars_BagUseOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = DebugAction_FlagsVars_CatchingOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_ENCOUNTERS] = DebugAction_FlagsVars_ToggleRandomEncounters,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_EVOLUTIONS] = DebugAction_FlagsVars_ToggleRandomEvolutions,
 };
 static void (*const sDebugMenu_Actions_Give[])(u8) =
 {
@@ -1310,6 +1326,12 @@ static u8 Debug_CheckToggleFlags(u8 id)
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS:
             result = FlagGet(FLAG_SYS_FRONTIER_PASS);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_ENCOUNTERS:
+            result = FlagGet(FLAG_RANDOM_ENCOUNTERS);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOM_EVOLUTIONS:
+            result = FlagGet(FLAG_RANDOM_EVOLUTIONS);
             break;
     #if OW_FLAG_NO_COLLISION != 0
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLLISION:
@@ -2935,6 +2957,24 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     FlagToggle(B_FLAG_NO_CATCHING);
 #endif
+}
+
+static void DebugAction_FlagsVars_ToggleRandomEncounters(u8 taskId)
+{
+    if (FlagGet(FLAG_RANDOM_ENCOUNTERS))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_RANDOM_ENCOUNTERS);
+}
+
+static void DebugAction_FlagsVars_ToggleRandomEvolutions(u8 taskId)
+{
+    if (FlagGet(FLAG_RANDOM_EVOLUTIONS))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_RANDOM_EVOLUTIONS);
 }
 
 // *******************************
@@ -5130,6 +5170,11 @@ static void DebugAction_Party_CheckEVs(u8 taskId)
 static void DebugAction_Party_CheckIVs(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_CheckIVs);
+}
+
+static void DebugAction_Party_MaxFriendship(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, Debug_EventScript_MaxFriendship);
 }
 
 static void DebugAction_Party_ClearParty(u8 taskId)

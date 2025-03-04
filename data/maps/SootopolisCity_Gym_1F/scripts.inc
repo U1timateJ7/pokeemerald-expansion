@@ -84,6 +84,7 @@ SootopolisCity_Gym_1F_EventScript_Juan::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
+	goto_if_unset FLAG_RECEIVED_DYNAMAX_BAND, SootopolisCity_Gym_1F_EventScript_GiveDynamaxBand2
 	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
 	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
 	release
@@ -104,6 +105,7 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated::
 	setvar VAR_0x8008, 8
 	call Common_EventScript_SetGymTrainers
 	call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
+	call SootopolisCity_Gym_1F_EventScript_GiveDynamaxBand
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
@@ -127,6 +129,21 @@ SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	msgbox SootopolisCity_Gym_1F_Text_ExplainWaterPulse, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_WATER_PULSE
+	release
+	end
+
+SootopolisCity_Gym_1F_EventScript_GiveDynamaxBand::
+	giveitem ITEM_DYNAMAX_BAND
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+	msgbox SootopolisCity_Gym_1F_Text_ExplainDynamaxBand, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_DYNAMAX_BAND
+	return
+
+SootopolisCity_Gym_1F_EventScript_GiveDynamaxBand2::
+	giveitem ITEM_DYNAMAX_BAND
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	msgbox SootopolisCity_Gym_1F_Text_ExplainDynamaxBand, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_DYNAMAX_BAND
 	release
 	end
 
@@ -250,7 +267,14 @@ SootopolisCity_Gym_1F_Text_ExplainWaterPulse:
 	.string "The TECHNICAL MACHINE I handed you\n"
 	.string "contains WATER PULSE.\p"
 	.string "In use, it will occasionally confuse\n"
-	.string "the target with ultrasonic waves.\p"
+	.string "the target with ultrasonic waves.$"
+
+SootopolisCity_Gym_1F_Text_ExplainDynamaxBand:
+	.string "The POKéMON League allows Dynamaxing\n"
+	.string "so I thought I would give you this.\p"
+	.string "It allows, when possible, to power\n"
+	.string "up your POKéMON and make them\n"
+	.string "massive and more powerful.\p"
 	.string "… … … … … …$"
 
 SootopolisCity_Gym_1F_Text_RegisteredJuan:

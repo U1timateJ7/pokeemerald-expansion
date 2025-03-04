@@ -52,8 +52,8 @@ PacifidlogTown_House3_EventScript_Girl::
 
 PacifidlogTown_House3_Text_WillingToTradeIt:
 	.string "Check out this {STR_VAR_2}!\p"
-	.string "It's the {STR_VAR_2} that I caught\n"
-	.string "yesterday to celebrate my birthday!\p"
+	.string "It's the {STR_VAR_2} that my uncle\n"
+	.string "from Paldea got me for my birthday!\p"
 	.string "Oh, I can see that you want it!\n"
 	.string "After all, it's priceless!\p"
 	.string "I'll tell you what. I might be willing\n"
@@ -78,7 +78,7 @@ PacifidlogTown_House3_Text_NotDesperateOrAnything:
 PacifidlogTown_House3_Text_ReallyWantedToGetBagon:
 	.string "I know I could go looking for one\n"
 	.string "on my own, but…\p"
-	.string "But I really wanted to get a BAGON\n"
+	.string "But I really wanted to get a MUDKIP\n"
 	.string "that another TRAINER caught…$"
 
 PacifidlogTown_House3_Text_IsThatAPokedex:

@@ -1741,6 +1741,12 @@
 	.byte \location
 	.endm
 
+	@ Changes the Tera Type of the Pokemon in the specified slot of their party.
+	.macro setmonteratype type:req
+	callnative SetChosenMonTeraType
+	.byte \type
+	.endm
+
 	@ For the rotating tile puzzles in Mossdeep Gym / Trick House Room 7. Moves the objects one rotation
 	@ on the colored puzzle specified by puzzleNumber.
 	.macro moverotatingtileobjects puzzleNumber:req

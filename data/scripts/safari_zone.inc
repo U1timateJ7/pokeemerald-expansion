@@ -191,8 +191,8 @@ SafariZone_South_Text_Boy:
 	.string "POKéMON gather around.$"
 
 SafariZone_South_Text_Man:
-	.string "I want to keep going deeper, but I\n"
-	.string "forgot to bring a BIKE.\p"
+	.string "I want to keep going deeper, but I've\n"
+	.string "used all my Safari Balls.\p"
 	.string "Something tells me that rare POKéMON\n"
 	.string "live in the outlying areas.$"
 

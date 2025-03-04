@@ -506,6 +506,8 @@ gSpecials::
 	def_special SetUnlockedPokedexFlags
 	def_special IsTrainerRegistered
 	def_special ShouldDoBrailleRegicePuzzle
+	def_special ShouldDoBrailleRegielekiPuzzle
+	def_special CheckHasAllRegis
 	def_special EnableNationalPokedex
 	def_special ScriptMenu_CreateLilycoveSSTidalMultichoice
 	def_special GetLilycoveSSTidalSelection
@@ -553,4 +555,5 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveEVs
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
+	def_special Script_SetChosenMonMaxFriendship
 	def_special UseBlankMessageToCancelPokemonPic

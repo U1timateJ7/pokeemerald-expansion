@@ -986,51 +986,51 @@ static const struct InGameTrade sIngameTrades[] =
 {
     [INGAME_TRADE_SEEDOT] =
     {
-        .nickname = _("DOTS"),
-        .species = SPECIES_SEEDOT,
-        .ivs = {5, 4, 5, 4, 4, 4},
-        .abilityNum = 1,
+        .nickname = _("Mr. Quill"),
+        .species = SPECIES_CYNDAQUIL,
+        .ivs = {31, 31, 20, 31, 20, 20},
+        .abilityNum = 0,
         .otId = 38726,
         .conditions = {30, 5, 5, 5, 5},
-        .personality = 0x84,
-        .heldItem = ITEM_CHESTO_BERRY,
+        .personality = 0x73,
+        .heldItem = ITEM_CHARCOAL,
         .mailNum = -1,
-        .otName = _("KOBE"),
+        .otName = _("ELM"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_RALTS
+        .requestedSpecies = SPECIES_TORCHIC
     },
     [INGAME_TRADE_PLUSLE] =
     {
-        .nickname = _("PLUSES"),
-        .species = SPECIES_PLUSLE,
-        .ivs = {4, 4, 4, 5, 5, 4},
+        .nickname = _("Mr. Cat"),
+        .species = SPECIES_SPRIGATITO,
+        .ivs = {31, 31, 20, 31, 20, 20},
         .abilityNum = 0,
-        .otId = 73996,
+        .otId = 36491,
         .conditions = {5, 5, 30, 5, 5},
-        .personality = 0x6F,
-        .heldItem = ITEM_WOOD_MAIL,
-        .mailNum = 0,
-        .otName = _("ROMAN"),
+        .personality = 0x67,
+        .heldItem = ITEM_MIRACLE_SEED,
+        .mailNum = -1,
+        .otName = _("CLAVELL"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_VOLBEAT
+        .requestedSpecies = SPECIES_TREECKO
     },
     [INGAME_TRADE_HORSEA] =
     {
-        .nickname = _("SEASOR"),
-        .species = SPECIES_HORSEA,
-        .ivs = {5, 4, 4, 4, 5, 4},
+        .nickname = _("Mr. Seal"),
+        .species = SPECIES_POPPLIO,
+        .ivs = {31, 31, 20, 31, 20, 20},
         .abilityNum = 0,
-        .otId = 46285,
-        .conditions = {5, 5, 5, 5, 30},
-        .personality = 0x7F,
-        .heldItem = ITEM_WAVE_MAIL,
-        .mailNum = 1,
-        .otName = _("SKYLAR"),
+        .otId = 49423,
+        .conditions = {5, 30, 5, 5, 5},
+        .personality = 0x73,
+        .heldItem = ITEM_MYSTIC_WATER,
+        .mailNum = -1,
+        .otName = _("KUKUI"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_BAGON
+        .requestedSpecies = SPECIES_MUDKIP
     },
     [INGAME_TRADE_MEOWTH] =
     {

@@ -92,6 +92,7 @@ static const u16 sRaticateFormSpeciesIdTable[] = {
 static const u16 sPichuFormSpeciesIdTable[] = {
     SPECIES_PICHU,
     SPECIES_PICHU_SPIKY_EARED,
+    SPECIES_PICHU_WONDER_GUARD,
     FORM_SPECIES_END,
 };
 #endif //P_GEN_2_CROSS_EVOS
